@@ -1,0 +1,26 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/productsansregular</item>
+
+        <item name="materialCardViewStyle">@style/Widget.App.CardView</item>
+
+    </style>
+
+    <!-- Material Cards. -->
+    <style name="Widget.App.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Card</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Card" parent="">
+        <item name="colorPrimary">@color/colorCabeceraYCardsBackground</item>
+        <item name="colorSurface">@color/colorCabeceraYCardsBackground</item>
+        <item name="colorOnSurface">@color/colorPrimaryLight</item>
+    </style>
+
+</resources>

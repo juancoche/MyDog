@@ -37,7 +37,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //recyclerview
-    implementation 'com.android.support:recyclerview-v7:29.0.0'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //glide (librería para carga de imágenes)
     implementation 'com.github.bumptech.glide:glide:4.4.0'

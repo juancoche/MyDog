@@ -4,17 +4,17 @@
     <item
         android:id="@+id/home"
         android:icon="@mipmap/menuhome"
-        android:title="Inicio"
+        android:title="@string/navbar_main"
         app:showAsAction="always"/>
     <item
         android:id="@+id/pets"
         android:icon="@mipmap/menupets"
-        android:title="Mis mascotas"
+        android:title="@string/navbar_mypets"
         app:showAsAction="always"/>
     <item
         android:id="@+id/buscar"
         android:icon="@mipmap/menusearch"
-        android:title="Buscar"
+        android:title="@string/navbar_services"
         app:showAsAction="always"/>
 
 </menu>

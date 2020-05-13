@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
                         addFragment(new MainFragment());
                         viewIsAtHome = true;
                         break;
-                    /*case R.id.pets:
-                        addFragment(fragment);
+                    case R.id.pets:
+                        addFragment(new MisMascotasFragment());
                         viewIsAtHome = false;
-                        break;
+                        /*break;
                     case R.id.buscar:
                         addFragment(fragment1);
                         viewIsAtHome = false;*/

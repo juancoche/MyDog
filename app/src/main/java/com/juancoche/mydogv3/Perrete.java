@@ -4,13 +4,15 @@ public class Perrete {
 
     private int imagen;
     private String nombre;
+    private String raza;
 
     public Perrete() {
     }
 
-    public Perrete(int imagen, String nombre) {
+    public Perrete(int imagen, String nombre, String raza) {
         this.imagen = imagen;
         this.nombre = nombre;
+        this.raza = raza;
     }
 
     public int getImagen() {
@@ -27,5 +29,13 @@ public class Perrete {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
     }
 }

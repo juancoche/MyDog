@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "482338302768",
+    "firebase_url": "https://mydog-d0f5d.firebaseio.com",
+    "project_id": "mydog-d0f5d",
+    "storage_bucket": "mydog-d0f5d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482338302768:android:4362dcea973724b498f6f5",
+        "android_client_info": {
+          "package_name": "com.juancoche.mydogv3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482338302768-v7c0g48gf1fat0lev82rek618gqbqkks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS3_NsJJqxj8GNhj7LNhkCRJ1Vhvzwl60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482338302768-v7c0g48gf1fat0lev82rek618gqbqkks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

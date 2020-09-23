@@ -23,4 +23,8 @@
         <item name="colorOnSurface">@color/colorPrimaryLight</item>
     </style>
 
+    <style name="NoPreview" parent="AppTheme">
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
 </resources>

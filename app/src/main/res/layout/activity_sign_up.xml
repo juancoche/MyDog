@@ -11,7 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".activities.login.LoginActivity">
+        tools:context=".activities.login.LoginActivity"
+        android:focusableInTouchMode="true">
 
         <ImageView
             android:id="@+id/logo_login"
@@ -53,59 +54,53 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/button_login_email"
+            app:layout_constraintBottom_toTopOf="@+id/editTextRepeatPassword"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextRepeatPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="48dp"
+            android:background="@drawable/edittext_rounded"
+            android:hint="@string/repeat_password"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_signUp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button_login_email"
+            android:id="@+id/button_signUp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="56dp"
             android:layout_marginEnd="56dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/button_ripple_bg"
-            android:text="@string/login_with_email"
+            android:text="@string/register"
             android:textColor="@color/colorBottomNavigationBackground"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/textViewForgotPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/remember_password"
-            app:layout_constraintBottom_toTopOf="@+id/button_login_google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.shobhitpuri.custombuttons.GoogleSignInButton
-            android:id="@+id/button_login_google"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="90dp"
-            android:layout_marginEnd="90dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/login_with_google"
-            app:isDarkTheme="false"
-            app:layout_constraintBottom_toTopOf="@+id/button_register"
+            app:layout_constraintBottom_toTopOf="@+id/button_return"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button_register"
+            android:id="@+id/button_return"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="95dp"
             android:layout_marginEnd="95dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/button_ripple"
-            android:text="@string/new_account"
+            android:text="@string/return_login"
             android:textColor="@color/colorBottomNavigationBackground"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"

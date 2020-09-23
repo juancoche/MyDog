@@ -1,4 +1,4 @@
-package com.juancoche.mydogv3;
+package com.juancoche.mydogv3.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,9 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.juancoche.mydogv3.MainFragment;
+import com.juancoche.mydogv3.MisMascotasFragment;
+import com.juancoche.mydogv3.R;
 
 import java.util.ArrayList;
 

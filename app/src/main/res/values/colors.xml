@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
     <resources>
-        <color name="colorPrimary">#fafafa</color>
+        <color name="colorPrimary">#E1DADA</color>
         <color name="colorPrimaryLight">#ffffff</color>
         <color name="colorPrimaryDark">#272525</color>
         <color name="colorPrimaryTextColor">#000000</color>
         <color name="colorAccent">#d7ccc8</color>
+        <color name="colorAccentDark">#D6B6AA</color>
         <color name="colorBottomNavigationBackground">#D1ffffff</color>
         <color name="colorCabeceraYCardsBackground">#66AEA9A9</color>
+        <color name="colorEditText">#99AEA9A9</color>
+        <color name="transparent">#00ff0000</color>
     </resources>
 

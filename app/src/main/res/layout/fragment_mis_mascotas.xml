@@ -73,6 +73,8 @@
         android:layout_height="88dp"
         android:layout_marginStart="325dp"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

@@ -5,4 +5,16 @@
     <string name="navbar_main">Inicio</string>
     <string name="navbar_mypets">Mis mascotas</string>
     <string name="navbar_services">Buscar</string>
+
+    <!-- Login -->
+    <string name="login_email">Email</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_with_email">Iniciar Sesión</string>
+    <string name="login_with_google">Iniciar sesión con Google</string>
+    <string name="remember_password">Recordar contraseña</string>
+    <string name="new_account">Crear una cuenta</string>
+    <string name="return_login">Volver</string>
+    <string name="register">Registrarse</string>
+    <string name="repeat_password">Repetir contraseña</string>
+
 </resources>

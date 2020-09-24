@@ -78,9 +78,11 @@ public class SignUpActivity extends AppCompatActivity {
                     editTextEmail.setError("El email no es correcto");
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
@@ -93,9 +95,11 @@ public class SignUpActivity extends AppCompatActivity {
                     editTextPassword.setError("La contraseña debe contener 8 caracteres, 1 num, 1 minus, 1 mayus, 1 caracter especial");
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
@@ -108,9 +112,11 @@ public class SignUpActivity extends AppCompatActivity {
                     editTextRepeatPassword.setError("Las contraseñas deben coincidir");
                 }
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
+
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         });
@@ -121,13 +127,19 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Objects.requireNonNull(mAuth.getCurrentUser()).sendEmailVerification();  //Enviar email de verificación
+                        if (task.isSuccessful()) {  //Enviar email de verificación
+                            Objects.requireNonNull(mAuth.getCurrentUser()).sendEmailVerification()
+                                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<Void>() { // Se realiza la acción una vez completada la tarea
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(SignUpActivity.this, "Se ha enviado un email de confirmación a tu cuenta de correo",
                                             Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class)
-                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class)
+                                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                                }
+                            });
+
                         } else {
                             Log.w(">>>>>>LOGIN FAILED<<<<<<<", "createUserWithEmail:failure", task.getException());
                             Toast.makeText(SignUpActivity.this, "Ha ocurrido un error, inténtalo de nuevo",

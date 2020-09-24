@@ -7,21 +7,36 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.juancoche.mydogv3.MainFragment;
 import com.juancoche.mydogv3.MisMascotasFragment;
 import com.juancoche.mydogv3.R;
+import com.juancoche.mydogv3.activities.login.LoginActivity;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     Boolean viewIsAtHome;
+
+    /*@Override
+    public void onStart() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        super.onStart();
+        if (user == null) {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        }
+
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +56,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.pets:
                         addFragment(new MisMascotasFragment());
                         viewIsAtHome = false;
-                        /*break;
+                        break;
                     case R.id.buscar:
-                        addFragment(fragment1);
+                        // Log Out provisional
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                        mAuth.signOut();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        /*addFragment(fragment1);
                         viewIsAtHome = false;*/
                 }
                 return true;

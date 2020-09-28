@@ -1,30 +1,30 @@
-package com.juancoche.mydogv3;
+package com.juancoche.mydogv3.adapters;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.juancoche.mydogv3.R;
 
 public class RecyclerViewAdapterMainUltimasFotos extends RecyclerView.Adapter<RecyclerViewAdapterMainUltimasFotos.ViewHolder> {
 
     private ArrayList<Integer> fotos = new ArrayList<>();
     private Context mContext;
     View view;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    ImageView imageViewProfile;
 
     public RecyclerViewAdapterMainUltimasFotos(ArrayList<Integer> fotos, Context mContext) {
         this.fotos = fotos;
@@ -35,14 +35,27 @@ public class RecyclerViewAdapterMainUltimasFotos extends RecyclerView.Adapter<Re
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_lastphotos, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_lastphotos, parent, false);
+
+        //imageViewProfile = (ImageView) view.findViewById(R.id.imageView_profile);
         return new RecyclerViewAdapterMainUltimasFotos.ViewHolder(view);
 
     }
+
     private int shortAnimationDuration;
     private Animator currentAnimator;
+
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+
+        try {
+            Glide.with(mContext)
+                    .load(user.getPhotoUrl())
+                    .into(imageViewProfile);
+        } catch (Exception e) {
+            System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Error al cargar imagen de perfil");
+            e.printStackTrace();
+        }
 
         Glide.with(mContext)
                 .asBitmap()
@@ -56,7 +69,7 @@ public class RecyclerViewAdapterMainUltimasFotos extends RecyclerView.Adapter<Re
 
                 //zoomImageFromThumb(thumb1View, fotos.get(position));
                 int foto = position + 1;
-                Toast toast = Toast.makeText(mContext, "Ampliar imagen "+ foto, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(mContext, "Ampliar imagen " + foto, Toast.LENGTH_SHORT);
                 toast.show();
             }
         });
@@ -75,6 +88,7 @@ public class RecyclerViewAdapterMainUltimasFotos extends RecyclerView.Adapter<Re
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageViewProfile = itemView.findViewById(R.id.imageView_profile);
             image = itemView.findViewById(R.id.foto_ultimas);
         }
     }

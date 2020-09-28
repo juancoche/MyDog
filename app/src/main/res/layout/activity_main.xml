@@ -41,3 +41,35 @@
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/fondohuellastrans"
+    tools:context=".activities.MainActivity">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        style="@style/Widget.MaterialComponents.BottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="15dp"
+        android:background="@color/colorBottomNavigationBackground"
+        app:itemIconTint="@color/colorPrimaryTextColor"
+        app:itemTextColor="@color/colorPrimaryTextColor"
+        app:menu="@menu/bottom_navigation_menu" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation"/>
+
+
+</RelativeLayout>
+-->

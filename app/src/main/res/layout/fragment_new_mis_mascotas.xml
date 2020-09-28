@@ -6,15 +6,14 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="550dp"
         android:background="#66AEA9A9"
         android:paddingTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/card"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +24,8 @@
             android:id="@+id/profile_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_default_profile_img"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatarcirc"
             app:civ_border_color="#898787"
             app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--
         <TextView
             android:id="@+id/alias"
             android:layout_width="0dp"
@@ -51,14 +50,12 @@
             app:layout_constraintStart_toEndOf="@+id/profile_image"
             app:layout_constraintTop_toTopOf="parent" />
 
-            -->
-
         <TextView
             android:id="@+id/name"
             android:layout_width="228dp"
             android:layout_height="23dp"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="36dp"
+            android:text="Juan Carlos Penuelas"
             android:textSize="18sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,13 +66,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
         android:layout_width="0dp"
         android:layout_height="88dp"
         android:layout_marginStart="325dp"
         android:layout_marginTop="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="38dp"
         app:layout_constraintBottom_toTopOf="@+id/card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -100,7 +98,8 @@
     <TextView
         android:id="@+id/label_lastPhotos"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
         android:text="@string/main_lbl_yourpets"
         android:textColorHighlight="#FFFFFF"
@@ -109,18 +108,21 @@
         app:layout_constraintBottom_toTopOf="@+id/card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cabecera" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
-        android:layout_width="400dp"
-        android:layout_height="458dp"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_lastPhotos">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

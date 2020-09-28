@@ -1,9 +1,11 @@
-package com.juancoche.mydogv3;
+package com.juancoche.mydogv3.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.juancoche.mydogv3.Perrete;
+import com.juancoche.mydogv3.R;
+import com.juancoche.mydogv3.adapters.RecyclerViewAdapterMainTusMascotas;
+import com.juancoche.mydogv3.adapters.RecyclerViewAdapterMainUltimasFotos;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,14 +32,38 @@ public class MainFragment extends Fragment {
 
     private ArrayList<Perrete> perretes = new ArrayList<>();
     private ArrayList<Integer> fotos = new ArrayList<>();
+    private FirebaseUser user;
+    private ImageView imageViewProfile;
+    private TextView textViewName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getActivity().getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
+
+        imageViewProfile = view.findViewById(R.id.imageView_profile);
+        textViewName = view.findViewById(R.id.name);
+
+        if (user != null) {
+            if (user.getPhotoUrl() != null) {
+                Glide.with(view)
+                        .asBitmap()
+                        .load(user.getPhotoUrl())
+                        .into(imageViewProfile);
+            } else {
+                imageViewProfile.setBackgroundResource(R.mipmap.ic_default_profile_img);
+            }
+            if (user.getDisplayName().equals(""))
+                textViewName.setText("Nombre de usuario");
+            else
+                textViewName.setText(user.getDisplayName());
+        }
+
 
         llenarFotos();
 

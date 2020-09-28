@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonNewAccount, buttonLoginGoogle, buttonLoginEmail;
     private EditText editTextEmail, editTextPassword;
     private TextView forgotPassword;
-    private GoogleSignInClient mGoogleSignInClient;
+    public static GoogleSignInClient mGoogleSignInClient;
     private final int RC_SIGN_IN = 50;
 
     @Override
@@ -141,9 +141,6 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                // Login provisional
-                startActivity(new Intent(LoginActivity.this, MainActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
@@ -186,10 +183,15 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Para que al cerrar sesión y volver a login obligue a seleccionar la cuenta de google
+                            // Login provisional
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                            // Para forzar selección de cuenta al volver al login
                             mGoogleSignInClient.signOut();
                         } else {
                             // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginActivity.this, "Error al iniciar sesión",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

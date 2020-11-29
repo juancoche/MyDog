@@ -4,7 +4,10 @@
     <string name="main_lbl_yourpets">Tus mascotas</string>
     <string name="navbar_main">Inicio</string>
     <string name="navbar_mypets">Mis mascotas</string>
-    <string name="navbar_services">Buscar</string>
+    <string name="navbar_services">Utilidades</string>
+    <string name="settings_logout">Desconectar</string>
+    <string name="eliminar_mascota">Eliminar</string>
+
 
     <!-- Login -->
     <string name="login_email">Email</string>

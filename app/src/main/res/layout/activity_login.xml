@@ -107,7 +107,7 @@
             android:background="@drawable/button_ripple"
             android:text="@string/new_account"
             android:textColor="@color/colorBottomNavigationBackground"
-            android:textSize="15sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

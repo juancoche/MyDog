@@ -8,7 +8,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -62,12 +66,12 @@ public class MainActivity extends AppCompatActivity {
                         addFragment(new MisMascotasFragment());
                         viewIsAtHome = false;
                         break;
-                    case R.id.buscar:
+                    case R.id.utilidades:
                         // Log Out provisional
-                        FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(MainActivity.this, LoginActivity.class)
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                        Toast.makeText(getBaseContext(), "Has cerrado sesión", Toast.LENGTH_LONG).show();
+//                        FirebaseAuth.getInstance().signOut();
+//                        startActivity(new Intent(MainActivity.this, LoginActivity.class)
+//                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+//                        Toast.makeText(getBaseContext(), "Has cerrado sesión", Toast.LENGTH_LONG).show();
 
                         /*GoogleSignInClient mGoogleSignInClient;
                         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

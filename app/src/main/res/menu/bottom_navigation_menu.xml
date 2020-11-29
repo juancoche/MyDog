@@ -12,7 +12,7 @@
         android:title="@string/navbar_mypets"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/buscar"
+        android:id="@+id/utilidades"
         android:icon="@mipmap/menusearch"
         android:title="@string/navbar_services"
         app:showAsAction="always"/>

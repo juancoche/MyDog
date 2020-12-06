@@ -44,10 +44,10 @@ public class RecyclerViewAdapterMainTusMascotas extends RecyclerView.Adapter<Rec
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Glide.with(mContext)
+        /*Glide.with(mContext)
                 .asBitmap()
                 .load(perretes.get(position).getImagen())
-                .into(holder.image);
+                .into(holder.image);*/
         holder.name.setText(perretes.get(position).getNombre());
 
     }
@@ -64,7 +64,7 @@ public class RecyclerViewAdapterMainTusMascotas extends RecyclerView.Adapter<Rec
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.pet_image);
+//            image = itemView.findViewById(R.id.pet_image);
             name = itemView.findViewById(R.id.label_name_pet);
         }
     }

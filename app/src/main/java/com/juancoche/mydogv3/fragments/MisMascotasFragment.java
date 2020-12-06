@@ -15,11 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.juancoche.mydogv3.Perrete;
 import com.juancoche.mydogv3.R;
+import com.juancoche.mydogv3.adapters.PerreteAdapterMain;
 import com.juancoche.mydogv3.adapters.RecyclerViewAdapterTusMascotas;
+import com.juancoche.mydogv3.adapters.TusMascotasAdapter;
 
 import java.util.ArrayList;
 
@@ -29,6 +34,7 @@ public class MisMascotasFragment extends Fragment {
     private FirebaseUser user;
     private ImageView imageViewProfile;
     private TextView textViewName;
+    private TusMascotasAdapter adapter;
 
     @Nullable
     @Override
@@ -43,44 +49,50 @@ public class MisMascotasFragment extends Fragment {
         imageViewProfile = view.findViewById(R.id.profile_image);
         textViewName = view.findViewById(R.id.name);
 
-        if (user != null) {
-            if (user.getPhotoUrl() != null) {
-                Glide.with(view)
-                        .asBitmap()
-                        .load(user.getPhotoUrl())
-                        .into(imageViewProfile);
-            } else {
-                imageViewProfile.setBackgroundResource(R.mipmap.ic_default_profile_img);
-            }
-            if (user.getDisplayName().equals(""))
-                textViewName.setText("Nombre de usuario");
-            else
-                textViewName.setText(user.getDisplayName());
-        }
-
-        llenarPerretes();
-
-        //Inflar RecyclerView con mascotas
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMisMascotas);
-        recyclerView.setLayoutManager(layoutManager);
-        RecyclerViewAdapterTusMascotas adapter = new RecyclerViewAdapterTusMascotas(perretes, view.getContext());
-        recyclerView.setAdapter(adapter);
-
+        loadHeader(view);
+        loadPets(view);
 
         return view;
     }
 
-
-    //Llenamos la lista de perretes de prueba
-    private void llenarPerretes() {
-
-        perretes.add(new Perrete(R.drawable.perrouno, "Perro1", "Mestizo"));
-        perretes.add(new Perrete(R.drawable.perrodos, "Perro2", "Galgo"));
-        perretes.add(new Perrete(R.drawable.perrotres, "Perro3", "Podenco"));
-        perretes.add(new Perrete(R.drawable.perrocuatro, "Perro4", "BullDog"));
-        perretes.add(new Perrete(R.drawable.perrocinco, "Perro5", "YorkShire"));
-        perretes.add(new Perrete(R.drawable.perroseis, "Perro6", "Caniche"));
-
+    private void loadHeader(View v) {
+        if (user != null) {
+            if (user.getPhotoUrl() != null) {
+                Glide.with(v)
+                        .asBitmap()
+                        .load(user.getPhotoUrl())
+                        .into(imageViewProfile);
+            }
+            if (user.getDisplayName() != null)
+                textViewName.setText(user.getDisplayName());
+        }
     }
+
+    private void loadPets(View view) {
+        Query query = FirebaseFirestore.getInstance()
+                .collection("users").document(user.getEmail())
+                .collection("pets");
+
+        FirestoreRecyclerOptions<Perrete> options
+                = new FirestoreRecyclerOptions.Builder<Perrete>()
+                .setQuery(query, Perrete.class)
+                .build();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMisMascotas);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new TusMascotasAdapter(options);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override public void onStart()
+    {
+        super.onStart();
+        adapter.startListening();
+    }
+    @Override public void onStop()
+    {
+        super.onStop();
+        adapter.stopListening();
+    }
+
 }

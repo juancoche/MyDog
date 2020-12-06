@@ -71,17 +71,18 @@
             app:srcCompat="@drawable/iconoajustes" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imagenCabecera"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="50dp"
+            android:background="@drawable/perfilrect"
             android:contentDescription="TODO"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/imageback" />
+            app:srcCompat="@drawable/perretesheader" />
 
         <!--
         <TextView

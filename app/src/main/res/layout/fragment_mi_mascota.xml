@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.MiMascotaFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fondohuellastrans"
+        android:fillViewport="true"
+        tools:context=".activities.login.LoginActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".activities.login.LoginActivity"
+            android:focusableInTouchMode="true">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/pet_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/imageback"
+                app:civ_border_color="#898787"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.465"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pet_image">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="6dp"
+                    tools:layout_editor_absoluteX="35dp"
+                    tools:layout_editor_absoluteY="333dp">
+
+                    <TextView
+                        android:id="@+id/label_name_pet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="26dp"
+                        android:layout_alignParentBottom="true"
+                        android:text="Nombre"
+                        android:textColorHighlight="#FFFFFF"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_fNac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="50dp"
+                        android:text="F. Nac"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Sexo"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_fNac" />
+
+                    <TextView
+                        android:id="@+id/label_raza"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Raza"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_sex" />
+
+                    <TextView
+                        android:id="@+id/label_otro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="176dp"
+                        android:layout_marginTop="50dp"
+                        android:text="Otro"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/label_peso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="176dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Peso"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_otro" />
+
+                    <TextView
+                        android:id="@+id/label_chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="176dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Chip"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_peso" />
+
+                    <ImageButton
+                        android:id="@+id/mascotaOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#00FFFFFF"
+                        android:src="@mipmap/menupets"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</FrameLayout>

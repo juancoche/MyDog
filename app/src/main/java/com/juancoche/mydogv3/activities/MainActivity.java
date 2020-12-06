@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.juancoche.mydogv3.adapters.PagerAdapter;
 import com.juancoche.mydogv3.fragments.MainFragment;
 import com.juancoche.mydogv3.fragments.MisMascotasFragment;
@@ -30,6 +31,8 @@ import com.juancoche.mydogv3.R;
 import com.juancoche.mydogv3.activities.login.LoginActivity;
 import com.juancoche.mydogv3.fragments.NewMainFragment;
 import com.juancoche.mydogv3.fragments.NewMisMascotasFragment;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private PagerAdapter adapter;
     private MenuItem prevBottomSelected = null;
     private BottomNavigationView bottomNavigation;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         //viewPager = findViewById(R.id.viewPager);
         bottomNavigation = findViewById(R.id.bottom_navigation);
+
+//        db = FirebaseFirestore.getInstance();
+//        HashMap<String,String> userMap = new HashMap<>();
+//        userMap.put("name", user.getDisplayName());
+//
+//        db.collection("users")
+//                .document(user.getEmail()).set(userMap);
 
         //setUpViewPager(getPagerAdapter());
         //setUpBottomNavigationBar();

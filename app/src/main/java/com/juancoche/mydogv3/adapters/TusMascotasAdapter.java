@@ -3,9 +3,7 @@ package com.juancoche.mydogv3.adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,58 +15,44 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.juancoche.mydogv3.Perrete;
 import com.juancoche.mydogv3.R;
 
-import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class RecyclerViewAdapterTusMascotas extends RecyclerView.Adapter<RecyclerViewAdapterTusMascotas.ViewHolder> {
+public class TusMascotasAdapter extends FirestoreRecyclerAdapter<Perrete, TusMascotasAdapter.PerreteViewholder> {
 
-    private ArrayList<Perrete> perretes = new ArrayList<>();
-    private Context mContext;
+    private Context context;
 
-    public RecyclerViewAdapterTusMascotas(ArrayList<Perrete> perretes, Context mContext) {
-        this.perretes = perretes;
-        this.mContext = mContext;
+    public TusMascotasAdapter(@NonNull FirestoreRecyclerOptions<Perrete> options) {
+        super(options);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull PerreteViewholder holder, int position, @NonNull Perrete model) {
+        holder.name.setText(model.getNombre());
     }
 
     @NonNull
     @Override
-    public RecyclerViewAdapterTusMascotas.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PerreteViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.layout_mis_mascotas_list, parent, false);
+        context = parent.getContext();
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_mis_mascotas_list, parent, false);
-        return new RecyclerViewAdapterTusMascotas.ViewHolder(view);
+        return new TusMascotasAdapter.PerreteViewholder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapterTusMascotas.ViewHolder holder, int position) {
+    class PerreteViewholder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
- /*       Glide.with(mContext)
-                .asBitmap()
-                .load(perretes.get(position).getImagen())
-                .into(holder.image);*/
-        holder.name.setText(perretes.get(position).getNombre());
-        holder.breed.setText(perretes.get(position).getRaza());
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return perretes.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-
-        CircleImageView image;
         TextView name;
         TextView breed;
         ImageButton options;
+        CircleImageView image;
 
-
-        public ViewHolder(@NonNull View itemView) {
+        public PerreteViewholder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.pet_image);
             name = itemView.findViewById(R.id.label_name_pet);
@@ -94,17 +78,17 @@ public class RecyclerViewAdapterTusMascotas extends RecyclerView.Adapter<Recycle
 
             switch (item.getItemId()) {
                 case R.id.eliminar:
-                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage("¿Deseas eliminar la mascota?")
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     // Eliminar mascota
-                                    Toast.makeText(mContext, "Mascota eliminada", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "Mascota eliminada", Toast.LENGTH_LONG).show();
                                 }
                             })
                             .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Toast.makeText(mContext, "Cancelado", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "Cancelado", Toast.LENGTH_LONG).show();
                                 }
                             });
                     AlertDialog dialog = builder.create();
@@ -117,5 +101,3 @@ public class RecyclerViewAdapterTusMascotas extends RecyclerView.Adapter<Recycle
         }
     }
 }
-
-

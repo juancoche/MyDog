@@ -70,12 +70,12 @@ public class NewMainFragment extends Fragment {
     //Llenamos la lista de perretes de prueba
     private void llenarPerretes() {
 
-        perretes.add(new Perrete(R.drawable.perrouno, "Perro1", "Mestizo"));
+      /*  perretes.add(new Perrete(R.drawable.perrouno, "Perro1", "Mestizo"));
         perretes.add(new Perrete(R.drawable.perrodos, "Perro2", "Galgo"));
         perretes.add(new Perrete(R.drawable.perrotres, "Perro3", "Podenco"));
         perretes.add(new Perrete(R.drawable.perrocuatro, "Perro4", "BullDog"));
         perretes.add(new Perrete(R.drawable.perrocinco, "Perro5", "YorkShire"));
-        perretes.add(new Perrete(R.drawable.perroseis, "Perro6", "Caniche"));
+        perretes.add(new Perrete(R.drawable.perroseis, "Perro6", "Caniche"));*/
 
     }
 

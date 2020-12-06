@@ -25,7 +25,7 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/imageback"
                 app:civ_border_color="#898787"
@@ -40,7 +40,7 @@
                 android:layout_height="200dp"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="4dp"
@@ -77,18 +77,18 @@
                         android:layout_height="23dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="50dp"
-                        android:text="F. Nac"
+                        android:text="F. Nac:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/label_sex"
+                        android:id="@+id/label_genero"
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="Sexo"
+                        android:text="Género:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/label_fNac" />
@@ -99,18 +99,18 @@
                         android:layout_height="23dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="Raza"
+                        android:text="Raza:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_sex" />
+                        app:layout_constraintTop_toBottomOf="@+id/label_genero" />
 
                     <TextView
-                        android:id="@+id/label_otro"
+                        android:id="@+id/label_castrado"
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
                         android:layout_marginStart="176dp"
                         android:layout_marginTop="50dp"
-                        android:text="Otro"
+                        android:text="Esterilizado:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -121,10 +121,10 @@
                         android:layout_height="23dp"
                         android:layout_marginStart="176dp"
                         android:layout_marginTop="16dp"
-                        android:text="Peso"
+                        android:text="Peso:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_otro" />
+                        app:layout_constraintTop_toBottomOf="@+id/label_castrado" />
 
                     <TextView
                         android:id="@+id/label_chip"
@@ -132,7 +132,7 @@
                         android:layout_height="23dp"
                         android:layout_marginStart="176dp"
                         android:layout_marginTop="16dp"
-                        android:text="Chip"
+                        android:text="Chip:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/label_peso" />
@@ -149,6 +149,89 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+            <ImageButton
+                android:id="@+id/periodo"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="55dp"
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/iconmenstrua"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/medidas" />
+
+            <ImageButton
+                android:id="@+id/medidas"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="55dp"
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/iconmedidas"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/varios"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="55dp"
+                android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/abc_vector_test"
+                android:tint="@color/colorPrimaryDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/medidas" />
+
+            <ImageButton
+                android:id="@+id/vacunas"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iconvacuna"
+                app:layout_constraintBottom_toTopOf="@+id/periodo"
+                app:layout_constraintEnd_toStartOf="@+id/despar" />
+
+            <ImageButton
+                android:id="@+id/despar"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iconparasitos"
+                app:layout_constraintBottom_toTopOf="@+id/medidas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/medicacion"
+                android:layout_width="85dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="32dp"
+                android:scaleType="centerCrop"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/iconmedicacion"
+                app:layout_constraintBottom_toTopOf="@+id/varios"
+                app:layout_constraintStart_toEndOf="@+id/despar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,25 +1,34 @@
 package com.juancoche.mydogv3;
 
+import java.util.Map;
+
 public class Perrete {
 
 //    private int imagen;
     private String nombre;
     private String raza;
     private String fnac;
-    private String sexo;
-    private String lastVac;
-    private String medicacion;
+    private String genero;
+    private boolean esterilizado;
+    private String peso;
     private String nChip;
+    private String urlImg;
 
 
 
     public Perrete() {
     }
 
-    public Perrete(/*int imagen,*/ String nombre, String raza) {
-//        this.imagen = imagen;
-        this.nombre = nombre;
-        this.raza = raza;
+    //Constructor para mapeo del HashMap que devuelve BBDD
+    public Perrete(Map<String, Object> data) {
+        this.nombre = (String) data.get("nombre");
+        this.raza = (String) data.get("raza");
+        this.fnac = (String) data.get("fnac");
+        this.genero = (String) data.get("genero");
+        this.esterilizado = (boolean) data.get("esterilizado");
+        this.peso = (String) data.get("peso");
+        this.nChip = (String) data.get("nChip");
+        this.urlImg = (String) data.get("urlImg");
     }
 
 /*    public int getImagen() {
@@ -54,28 +63,28 @@ public class Perrete {
         this.fnac = fnac;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getGenero() {
+        return genero;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public String getLastVac() {
-        return lastVac;
+    public boolean isEsterilizado() {
+        return esterilizado;
     }
 
-    public void setLastVac(String lastVac) {
-        this.lastVac = lastVac;
+    public void setEsterilizado(boolean esterilizado) {
+        this.esterilizado = esterilizado;
     }
 
-    public String getMedicacion() {
-        return medicacion;
+    public String getPeso() {
+        return peso;
     }
 
-    public void setMedicacion(String medicacion) {
-        this.medicacion = medicacion;
+    public void setPeso(String peso) {
+        this.peso = peso;
     }
 
     public String getnChip() {
@@ -84,5 +93,13 @@ public class Perrete {
 
     public void setnChip(String nChip) {
         this.nChip = nChip;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
     }
 }

@@ -130,7 +130,7 @@
             tools:context="pluralsight.com.horizontalrecyclerview.MainActivity">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMisMascotas"
+                android:id="@+id/recyclerViewMisMascotasNew"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"

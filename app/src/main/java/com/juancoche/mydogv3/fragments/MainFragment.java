@@ -129,32 +129,18 @@ public class MainFragment extends Fragment implements View.OnClickListener, Popu
             }
         });
 
- /*       HashMap<String,String> petMap = new HashMap<>();
-        petMap.put("raza", "mestizo");
-        petMap.put("fnac", "10/10/16");
-        petMap.put("sexo", "macho");
-        petMap.put("foto", "");
-        petMap.put("lastVac", "10/10/2020");
-        petMap.put("chip", "810295861982509851263501982");
 
-        db.collection("users").document(user.getEmail())
-                .collection("pets")
-                .document("nombre")
-                .set(petMap);*/
-
-        /*Perrete perrete = new Perrete();
+       /* Perrete perrete = new Perrete();
         perrete.setNombre("Luna");
         perrete.setRaza("mestizo");
         perrete.setFnac("10/10/16");
-        perrete.setSexo("hembra");
-        perrete.setLastVac("10/10/2020");
-        perrete.setnChip("810295861982509851263501982");
+        perrete.setGenero("hembra");
+        perrete.setEsterilizado(false);
+        perrete.setnChip("810295861982509");
         db.collection("users").document(user.getEmail())
                 .collection("pets")
                 .document(perrete.getNombre())
                 .set(perrete);*/
-
-
         return view;
     }
 
@@ -287,6 +273,7 @@ public class MainFragment extends Fragment implements View.OnClickListener, Popu
                 return false;
         }
     }
+
     @Override public void onStart()
     {
         super.onStart();

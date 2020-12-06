@@ -7,10 +7,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,20 +71,40 @@ public class MisMascotasFragment extends Fragment {
         }
     }
 
-    private void loadPets(View view) {
+    private void loadPets(final View view) {
         Query query = FirebaseFirestore.getInstance()
                 .collection("users").document(user.getEmail())
                 .collection("pets");
 
-        FirestoreRecyclerOptions<Perrete> options
+        final FirestoreRecyclerOptions<Perrete> options
                 = new FirestoreRecyclerOptions.Builder<Perrete>()
                 .setQuery(query, Perrete.class)
                 .build();
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMisMascotas);
+        final RecyclerView recyclerView = view.findViewById(R.id.recyclerViewMisMascotas);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new TusMascotasAdapter(options);
+        adapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPetProfile(new MiMascotaFragment(),
+                        adapter.getItem(recyclerView.getChildAdapterPosition(v)).getNombre());
+            }
+        });
         recyclerView.setAdapter(adapter);
+    }
+
+    private void goToPetProfile(Fragment fragment, String nombre) {
+        Bundle i = new Bundle();
+        i.putString("nombre", nombre);
+        fragment.setArguments(i);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override public void onStart()

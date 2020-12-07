@@ -16,8 +16,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".activities.login.LoginActivity"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            tools:context=".activities.login.LoginActivity">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/pet_image"
@@ -160,7 +160,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="32dp"
-                android:layout_marginBottom="60dp"
+                android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/transparent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/iconmedidas"
@@ -171,8 +171,8 @@
                 android:id="@+id/label_medidas"
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginBottom="85dp"
+                android:layout_marginStart="95dp"
+                android:layout_marginBottom="70dp"
                 android:text="Medidas:"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -184,24 +184,35 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/transparent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/iconvacuna"
                 app:layout_constraintBottom_toTopOf="@+id/despar"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/label_vacunas"
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="95dp"
                 android:layout_marginBottom="35dp"
                 android:text="Últ. Vacuna:"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/label_desparasitacion"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/reminderVacuna"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iconocalendario"
+                app:layout_constraintBottom_toTopOf="@+id/reminderDesp"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageButton
                 android:id="@+id/despar"
@@ -219,12 +230,25 @@
                 android:id="@+id/label_desparasitacion"
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="95dp"
                 android:layout_marginBottom="35dp"
                 android:text="Últ. Desparasitación:"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/label_medicacion"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/reminderDesp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="175dp"
+                android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/iconocalendario"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageButton
                 android:id="@+id/medicacion"
@@ -242,7 +266,7 @@
                 android:id="@+id/label_medicacion"
                 android:layout_width="wrap_content"
                 android:layout_height="23dp"
-                android:layout_marginStart="100dp"
+                android:layout_marginStart="95dp"
                 android:layout_marginBottom="35dp"
                 android:text="Medicación:"
                 android:textSize="16sp"

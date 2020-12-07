@@ -61,12 +61,9 @@ public class MainFragment extends Fragment implements View.OnClickListener, Popu
     private HashMap<String,String> userMap;
     private PerreteAdapterMain adapter;
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();

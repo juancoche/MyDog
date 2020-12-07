@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/constraint"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    tools:context=".fragments.UtilidadesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cabecera"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginBottom="40dp"
         android:background="#66AEA9A9"
         android:paddingTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
@@ -51,36 +48,24 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/label_lastPhotos"
+        android:id="@+id/label_utilidades"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/main_lbl_yourpets"
+        android:text="Utilidades"
         android:textColorHighlight="#FFFFFF"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageButton
-        android:id="@+id/addMascota"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/transparent"
-        android:tint="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toTopOf="@+id/card"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="430dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,19 +76,56 @@
             android:layout_height="match_parent"
             tools:context="pluralsight.com.horizontalrecyclerview.MainActivity">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMisMascotas"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:scrollbars="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+            <ImageButton
+                android:id="@+id/nearVet"
+                android:layout_width="77dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@android:color/transparent"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/veterinario" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="80dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="70dp"
+                android:fontFamily="@font/productsansregular"
+                android:text="Veterinarios cercanos"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nearVet" />
+
+            <ImageButton
+                android:id="@+id/nearShop"
+                android:layout_width="77dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="70dp"
+                android:backgroundTint="@android:color/transparent"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@+id/textView8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/tiendamascotas" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="80dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="70dp"
+                android:fontFamily="@font/productsansregular"
+                android:text="Tiendas de animales"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nearShop" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -2,6 +2,7 @@ package com.juancoche.mydogv3.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -50,6 +52,8 @@ import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickResult;
 
+import java.util.Calendar;
+
 import static android.content.ContentValues.TAG;
 
 public class MiMascotaFragment extends Fragment implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
@@ -61,7 +65,7 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
     private String petName;
     private Perrete perrete;
     private TextView label_fNac, label_genero, label_raza, label_esterilizado, label_peso, label_name_pet, label_chip, label_vacunas, label_desparasitacion, label_medidas, label_medicacion;
-    private ImageButton mascotaOptions;
+    private ImageButton mascotaOptions, reminderVacuna, reminderDesp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,10 +86,45 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
         }
 
         petListener();
-        petImgSetOnClickListener();
+        pet_image.setOnClickListener(this);
         mascotaOptions.setOnClickListener(this);
+        reminderVacuna.setOnClickListener(this);
+        reminderDesp.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.mascotaOptions:
+                showPopupMenu(v);
+                break;
+            case R.id.reminderVacuna:
+                if (perrete.getVacuna() != null && perrete.getVacuna().compareTo("") != 0)
+                    agregarEvento(petName, perrete.getVacuna(), "Vacunar a ");
+                break;
+            case R.id.reminderDesp:
+                if (perrete.getDesparasitacion() != null && perrete.getDesparasitacion().compareTo("") != 0)
+                    agregarEvento(petName, perrete.getDesparasitacion(), "Desparasitar a ");
+                break;
+            case R.id.pet_image:
+                PickImageDialog.build(new PickSetup())
+                        .setOnPickResult(new IPickResult() {
+                            @Override
+                            public void onPickResult(PickResult r) {
+                                //TODO: do what you have to...
+                                pet_image.setImageURI(r.getUri());
+                                uploadPetImg(r.getUri());
+                            }
+                        })
+                        .setOnPickCancel(new IPickCancel() {
+                            @Override
+                            public void onCancelClick() {
+                                //TODO: do what you have to if user clicked cancel
+                            }
+                        }).show(getActivity().getSupportFragmentManager());
+        }
     }
 
     private void loadElements(View view) {
@@ -102,30 +141,26 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
         label_desparasitacion = view.findViewById(R.id.label_desparasitacion);
         label_medidas = view.findViewById(R.id.label_medidas);
         label_medicacion = view.findViewById(R.id.label_medicacion);
+        reminderVacuna = view.findViewById(R.id.reminderVacuna);
+        reminderDesp = view.findViewById(R.id.reminderDesp);
     }
 
+    public void agregarEvento(String nombreMascota, String fecha, String recordatorio) {
 
-    private void petImgSetOnClickListener() {
-        pet_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PickImageDialog.build(new PickSetup())
-                        .setOnPickResult(new IPickResult() {
-                            @Override
-                            public void onPickResult(PickResult r) {
-                                //TODO: do what you have to...
-                                pet_image.setImageURI(r.getUri());
-                                uploadPetImg(r.getUri());
-                            }
-                        })
-                        .setOnPickCancel(new IPickCancel() {
-                            @Override
-                            public void onCancelClick() {
-                                //TODO: do what you have to if user clicked cancel
-                            }
-                        }).show(getActivity().getSupportFragmentManager());
-            }
-        });
+        String[] parts = fecha.split("/");
+
+        int dia = Integer.parseInt(parts[0]);
+        int mes = Integer.parseInt(parts[1]) - 1;
+        int annio = Integer.parseInt(parts[2]) + 1;
+
+        Calendar beginTime = Calendar.getInstance();
+        beginTime.set(annio, mes, dia);
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
+                .putExtra(CalendarContract.Events.TITLE, recordatorio + " " + nombreMascota)
+                .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
+        startActivity(intent);
     }
 
     private void petListener() {
@@ -152,7 +187,6 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
 
     private void loadPetInfo(final View view, final String name) {
 
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference petsRef = db.collection("users")
                 .document(user.getEmail())
                 .collection("pets");
@@ -229,11 +263,6 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
                         dr.update("urlImg", uri.toString());
                     }
                 });
-    }
-
-    @Override
-    public void onClick(View v) {
-        showPopupMenu(v);
     }
 
     private void showPopupMenu (View view) {

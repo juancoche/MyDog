@@ -85,44 +85,5 @@ public class TusMascotasAdapter extends FirestoreRecyclerAdapter<Perrete, TusMas
             gender = itemView.findViewById(R.id.label_genero);
             fnac = itemView.findViewById(R.id.label_fNac);
         }
-
-        /*@Override
-        public void onClick(View v) {
-            showPopupMenu(v);
-        }
-
-        private void showPopupMenu (View view) {
-            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
-            popupMenu.inflate(R.menu.mismascotas_list_menu);
-            popupMenu.setOnMenuItemClickListener(this);
-            popupMenu.show();
-        }
-
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-
-            switch (item.getItemId()) {
-                case R.id.eliminar:
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setMessage("¿Deseas eliminar la mascota?")
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // Eliminar mascota
-                                    Toast.makeText(context, "Mascota eliminada", Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Toast.makeText(context, "Cancelado", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    return true;
-
-                default:
-                    return false;
-            }
-        }*/
     }
 }

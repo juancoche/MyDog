@@ -48,6 +48,12 @@ public class MisMascotasFragment extends Fragment {
         getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getActivity().getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
 
+        loadElements(view);
+
+        return view;
+    }
+
+    private void loadElements(View view) {
         imageViewProfile = view.findViewById(R.id.profile_image);
         textViewName = view.findViewById(R.id.name);
         addMascota = view.findViewById(R.id.addMascota);
@@ -67,8 +73,6 @@ public class MisMascotasFragment extends Fragment {
                         .commit();
             }
         });
-
-        return view;
     }
 
     private void loadHeader(View v) {

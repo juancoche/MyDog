@@ -51,7 +51,6 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
     private Switch switchEsterilizado;
     public static int REQUEST_CODE;
     private String selectedDate;
-    private OnFragmentInteractionListener mListener;
     private Button aceptar, cancelar;
 
     @Override
@@ -223,29 +222,12 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
     private void showDatePickerDialog() {
 
         final FragmentManager fm = ((AppCompatActivity)getActivity()).getSupportFragmentManager();
-
         // create the datePickerFragment
         AppCompatDialogFragment newFragment = new DatePickerFragment();
         // set the targetFragment to receive the results, specifying the request code
         newFragment.setTargetFragment(EditMascotaFragment.this, REQUEST_CODE);
         // show the datePicker
         newFragment.show(fm, "datePicker");
-
-//        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-//                // +1 because January is zero
-//                final String selectedYear= day + "/" + (month+1) + "/" + year;
-//                editText.setText(selectedYear);
-//
-//            }
-//        });
-//
-//       /* DialogFragment datePicker = new DatePickerFragment();
-//        datePicker.setTargetFragment(EditMascotaFragment.this, 0);
-//        datePicker.show(getFragmentManager(), "date picker");*/
-//
-//        newFragment.show(getParentFragment().getFragmentManager(), "datePicker");
     }
 
     @Override
@@ -275,7 +257,6 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -285,11 +266,8 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }

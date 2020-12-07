@@ -3,7 +3,8 @@
         <color name="colorPrimary">#E1DADA</color>
         <color name="colorPrimaryLight">#ffffff</color>
         <color name="colorPrimaryDark">#272525</color>
-        <color name="colorPrimaryTextColor">#000000</color>
+        <color name="colorPrimaryText">#000000</color>
+        <color name="colorSecondaryText">#000000</color>
         <color name="colorAccent">#C5C4C4</color>
         <color name="colorAccentDark">#8A8786</color>
         <color name="colorBottomNavigationBackground">#D1ffffff</color>

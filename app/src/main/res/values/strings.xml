@@ -8,6 +8,10 @@
     <string name="settings_logout">Desconectar</string>
     <string name="eliminar_mascota">Eliminar</string>
     <string name="editar_mascota">Editar</string>
+    <string name="dialog_picker">Selecciona una fecha</string>
+    <string name="dialog_notas">Notas</string>
+    <string name="button_cancelar">CANCELAR</string>
+    <string name="button_aceptar">ACEPTAR</string>
 
 
     <!-- Login -->

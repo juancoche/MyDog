@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.juancoche.mydogv3.Perrete;
+import com.juancoche.mydogv3.Model.Perrete;
 import com.juancoche.mydogv3.R;
-import com.juancoche.mydogv3.adapters.PerreteAdapterMain;
-import com.juancoche.mydogv3.adapters.RecyclerViewAdapterTusMascotas;
 import com.juancoche.mydogv3.adapters.TusMascotasAdapter;
 
 import java.util.ArrayList;
@@ -38,6 +36,7 @@ public class MisMascotasFragment extends Fragment {
     private ImageView imageViewProfile;
     private TextView textViewName;
     private TusMascotasAdapter adapter;
+    private ImageButton addMascota;
 
     @Nullable
     @Override
@@ -51,9 +50,23 @@ public class MisMascotasFragment extends Fragment {
 
         imageViewProfile = view.findViewById(R.id.profile_image);
         textViewName = view.findViewById(R.id.name);
+        addMascota = view.findViewById(R.id.addMascota);
 
         loadHeader(view);
         loadPets(view);
+
+        addMascota.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new EditMascotaFragment())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         return view;
     }

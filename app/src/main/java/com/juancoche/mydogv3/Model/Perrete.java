@@ -1,18 +1,22 @@
-package com.juancoche.mydogv3;
+package com.juancoche.mydogv3.Model;
 
 import java.util.Map;
 
 public class Perrete {
 
-//    private int imagen;
     private String nombre;
     private String raza;
     private String fnac;
-    private String genero;
+    private Long genero;
     private boolean esterilizado;
     private String peso;
     private String nChip;
     private String urlImg;
+    private String medidas;
+    private String vacuna;
+    private String desparasitacion;
+    private String medicacion;
+
 
 
 
@@ -24,11 +28,15 @@ public class Perrete {
         this.nombre = (String) data.get("nombre");
         this.raza = (String) data.get("raza");
         this.fnac = (String) data.get("fnac");
-        this.genero = (String) data.get("genero");
+        this.genero = (Long) data.get("genero");
         this.esterilizado = (boolean) data.get("esterilizado");
         this.peso = (String) data.get("peso");
         this.nChip = (String) data.get("nChip");
         this.urlImg = (String) data.get("urlImg");
+        this.medidas = (String) data.get("medidas");
+        this.medicacion = (String) data.get("medicacion");
+        this.desparasitacion = (String) data.get("desparasitacion");
+        this.vacuna = (String) data.get("vacuna");
     }
 
 /*    public int getImagen() {
@@ -63,11 +71,11 @@ public class Perrete {
         this.fnac = fnac;
     }
 
-    public String getGenero() {
+    public Long getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(Long genero) {
         this.genero = genero;
     }
 
@@ -101,5 +109,37 @@ public class Perrete {
 
     public void setUrlImg(String urlImg) {
         this.urlImg = urlImg;
+    }
+
+    public String getMedidas() {
+        return medidas;
+    }
+
+    public void setMedidas(String medidas) {
+        this.medidas = medidas;
+    }
+
+    public String getVacuna() {
+        return vacuna;
+    }
+
+    public void setVacuna(String vacuna) {
+        this.vacuna = vacuna;
+    }
+
+    public String getDesparasitacion() {
+        return desparasitacion;
+    }
+
+    public void setDesparasitacion(String desparasitacion) {
+        this.desparasitacion = desparasitacion;
+    }
+
+    public String getMedicacion() {
+        return medicacion;
+    }
+
+    public void setMedicacion(String medicacion) {
+        this.medicacion = medicacion;
     }
 }

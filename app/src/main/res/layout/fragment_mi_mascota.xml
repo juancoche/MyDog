@@ -35,7 +35,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/mascotaOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@mipmap/menupets"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_centerInParent="true"
@@ -63,6 +75,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="26dp"
                         android:layout_alignParentBottom="true"
+                        android:layout_marginTop="8dp"
                         android:text="Nombre"
                         android:textColorHighlight="#FFFFFF"
                         android:textSize="22sp"
@@ -76,7 +89,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="60dp"
                         android:text="F. Nac:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +122,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="23dp"
                         android:layout_marginStart="176dp"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="60dp"
                         android:text="Esterilizado:"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -137,101 +150,104 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/label_peso" />
 
-                    <ImageButton
-                        android:id="@+id/mascotaOptions"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#00FFFFFF"
-                        android:src="@mipmap/menupets"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
             <ImageButton
-                android:id="@+id/periodo"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="55dp"
-                android:scaleType="centerCrop"
-                android:backgroundTint="@color/transparent"
-                android:src="@drawable/iconmenstrua"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/medidas" />
-
-            <ImageButton
                 android:id="@+id/medidas"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="55dp"
-                android:scaleType="centerCrop"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="60dp"
                 android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/iconmedidas"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/label_medidas"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginBottom="85dp"
+                android:text="Medidas:"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
-                android:id="@+id/varios"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:id="@+id/vacunaButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="32dp"
-                android:layout_marginBottom="55dp"
-                android:backgroundTint="@color/transparent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/abc_vector_test"
-                android:tint="@color/colorPrimaryDark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/medidas" />
-
-            <ImageButton
-                android:id="@+id/vacunas"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/transparent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/iconvacuna"
-                app:layout_constraintBottom_toTopOf="@+id/periodo"
-                app:layout_constraintEnd_toStartOf="@+id/despar" />
+                app:layout_constraintBottom_toTopOf="@+id/despar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+            <TextView
+                android:id="@+id/label_vacunas"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginBottom="35dp"
+                android:text="Últ. Vacuna:"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/label_desparasitacion"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
                 android:id="@+id/despar"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="32dp"
                 android:backgroundTint="@color/transparent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/iconparasitos"
-                app:layout_constraintBottom_toTopOf="@+id/medidas"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/medicacion"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/label_desparasitacion"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginBottom="35dp"
+                android:text="Últ. Desparasitación:"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/label_medicacion"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageButton
                 android:id="@+id/medicacion"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="32dp"
-                android:layout_marginBottom="32dp"
-                android:scaleType="centerCrop"
                 android:backgroundTint="@color/transparent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/iconmedicacion"
-                app:layout_constraintBottom_toTopOf="@+id/varios"
-                app:layout_constraintStart_toEndOf="@+id/despar" />
+                app:layout_constraintBottom_toTopOf="@+id/medidas"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/label_medicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginBottom="35dp"
+                android:text="Medicación:"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/label_medidas"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

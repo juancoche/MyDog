@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.juancoche.mydogv3.Perrete;
+import com.juancoche.mydogv3.Model.Perrete;
 import com.juancoche.mydogv3.R;
 import com.juancoche.mydogv3.adapters.RecyclerViewAdapterTusMascotas;
 

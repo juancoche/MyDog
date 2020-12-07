@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.juancoche.mydogv3.adapters.PagerAdapter;
+import com.juancoche.mydogv3.fragments.EditMascotaFragment;
 import com.juancoche.mydogv3.fragments.MainFragment;
 import com.juancoche.mydogv3.fragments.MisMascotasFragment;
 import com.juancoche.mydogv3.R;
@@ -34,7 +36,7 @@ import com.juancoche.mydogv3.fragments.NewMisMascotasFragment;
 
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EditMascotaFragment.OnFragmentInteractionListener {
 
     private boolean viewIsAtHome;
     private FirebaseUser user;
@@ -131,6 +133,16 @@ public class MainActivity extends AppCompatActivity {
         } else {
             moveTaskToBack(true);  //If view is in News fragment, exit application
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
     /*
     public PagerAdapter getPagerAdapter () {

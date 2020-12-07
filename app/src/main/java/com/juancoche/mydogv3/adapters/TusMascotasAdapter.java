@@ -1,25 +1,20 @@
 package com.juancoche.mydogv3.adapters;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.juancoche.mydogv3.Perrete;
+import com.juancoche.mydogv3.Model.Gender;
+import com.juancoche.mydogv3.Model.Perrete;
 import com.juancoche.mydogv3.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -45,6 +40,10 @@ public class TusMascotasAdapter extends FirestoreRecyclerAdapter<Perrete, TusMas
         }
         holder.fnac.setText("F. Nac: " + model.getFnac());
         holder.breed.setText("Raza: " + model.getRaza());
+        if (model.getGenero() == Gender.MACHO.getValue())
+            holder.gender.setText("Género: Macho");
+        else if (model.getGenero() == Gender.HEMBRA.getValue())
+            holder.gender.setText("Género: Hembra");
     }
 
     @NonNull
@@ -70,13 +69,12 @@ public class TusMascotasAdapter extends FirestoreRecyclerAdapter<Perrete, TusMas
         }
     }
 
-    class PerreteViewholder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+    class PerreteViewholder extends RecyclerView.ViewHolder /*implements View.OnClickListener, PopupMenu.OnMenuItemClickListener*/ {
 
         TextView name;
         TextView breed;
         TextView gender;
         TextView fnac;
-        ImageButton options;
         CircleImageView image;
 
         public PerreteViewholder(@NonNull View itemView) {
@@ -86,11 +84,9 @@ public class TusMascotasAdapter extends FirestoreRecyclerAdapter<Perrete, TusMas
             breed = itemView.findViewById(R.id.label_raza);
             gender = itemView.findViewById(R.id.label_genero);
             fnac = itemView.findViewById(R.id.label_fNac);
-            options = itemView.findViewById(R.id.mascotaOptions);
-            options.setOnClickListener(this);
         }
 
-        @Override
+        /*@Override
         public void onClick(View v) {
             showPopupMenu(v);
         }
@@ -127,6 +123,6 @@ public class TusMascotasAdapter extends FirestoreRecyclerAdapter<Perrete, TusMas
                 default:
                     return false;
             }
-        }
+        }*/
     }
 }

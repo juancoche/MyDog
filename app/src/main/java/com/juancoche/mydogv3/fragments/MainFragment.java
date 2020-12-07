@@ -2,23 +2,15 @@ package com.juancoche.mydogv3.fragments;
 
 import android.app.AlertDialog;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,46 +28,30 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.juancoche.mydogv3.Perrete;
+import com.juancoche.mydogv3.Model.Gender;
+import com.juancoche.mydogv3.Model.Perrete;
 import com.juancoche.mydogv3.R;
-import com.juancoche.mydogv3.activities.MainActivity;
 import com.juancoche.mydogv3.activities.login.LoginActivity;
-import com.juancoche.mydogv3.activities.login.SignUpActivity;
 import com.juancoche.mydogv3.adapters.PerreteAdapterMain;
-import com.juancoche.mydogv3.adapters.RecyclerViewAdapterMainTusMascotas;
-import com.juancoche.mydogv3.adapters.RecyclerViewAdapterMainUltimasFotos;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
 import com.vansuita.pickimage.listeners.IPickCancel;
 import com.vansuita.pickimage.listeners.IPickResult;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.UUID;
-
-import static android.app.Activity.RESULT_CANCELED;
-import static android.app.Activity.RESULT_OK;
 
 public class MainFragment extends Fragment implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
-    //Provisonal para probar cambios hasta configurar BD
-
-    private ArrayList<Perrete> perretes = new ArrayList<>();
     private FirebaseUser user;
     private ImageView imageViewProfile;
     private TextView textViewName;
@@ -129,18 +105,6 @@ public class MainFragment extends Fragment implements View.OnClickListener, Popu
             }
         });
 
-
-       /* Perrete perrete = new Perrete();
-        perrete.setNombre("Luna");
-        perrete.setRaza("mestizo");
-        perrete.setFnac("10/10/16");
-        perrete.setGenero("hembra");
-        perrete.setEsterilizado(false);
-        perrete.setnChip("810295861982509");
-        db.collection("users").document(user.getEmail())
-                .collection("pets")
-                .document(perrete.getNombre())
-                .set(perrete);*/
         return view;
     }
 

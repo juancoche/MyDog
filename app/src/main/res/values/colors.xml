@@ -4,8 +4,8 @@
         <color name="colorPrimaryLight">#ffffff</color>
         <color name="colorPrimaryDark">#272525</color>
         <color name="colorPrimaryTextColor">#000000</color>
-        <color name="colorAccent">#d7ccc8</color>
-        <color name="colorAccentDark">#D6B6AA</color>
+        <color name="colorAccent">#C5C4C4</color>
+        <color name="colorAccentDark">#8A8786</color>
         <color name="colorBottomNavigationBackground">#D1ffffff</color>
         <color name="colorCabeceraYCardsBackground">#66AEA9A9</color>
         <color name="colorEditText">#99AEA9A9</color>

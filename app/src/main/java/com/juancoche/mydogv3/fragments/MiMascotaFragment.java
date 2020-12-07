@@ -2,7 +2,6 @@ package com.juancoche.mydogv3.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,7 +30,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -43,9 +41,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.juancoche.mydogv3.Perrete;
+import com.juancoche.mydogv3.Model.Gender;
+import com.juancoche.mydogv3.Model.Perrete;
 import com.juancoche.mydogv3.R;
-import com.juancoche.mydogv3.activities.login.LoginActivity;
 import com.vansuita.pickimage.bean.PickResult;
 import com.vansuita.pickimage.bundle.PickSetup;
 import com.vansuita.pickimage.dialog.PickImageDialog;
@@ -58,17 +56,11 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
 
     private FirebaseUser user;
     private FirebaseFirestore db;
-    private TextView label_name_pet;
-    private TextView label_chip;
     private ImageView pet_image;
     private StorageReference reference;
     private String petName;
     private Perrete perrete;
-    private TextView label_fNac;
-    private TextView label_genero;
-    private TextView label_raza;
-    private TextView label_esterilizado;
-    private TextView label_peso;
+    private TextView label_fNac, label_genero, label_raza, label_esterilizado, label_peso, label_name_pet, label_chip, label_vacunas, label_desparasitacion, label_medidas, label_medicacion;
     private ImageButton mascotaOptions;
 
     @Override
@@ -81,6 +73,22 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
         getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getActivity().getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
 
+        loadElements(view);
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            petName = bundle.getString("nombre", ""); // Key, default value
+            loadPetInfo(view, petName);
+        }
+
+        petListener();
+        petImgSetOnClickListener();
+        mascotaOptions.setOnClickListener(this);
+
+        return view;
+    }
+
+    private void loadElements(View view) {
         label_name_pet = view.findViewById(R.id.label_name_pet);
         label_chip = view.findViewById(R.id.label_chip);
         pet_image = view.findViewById(R.id.pet_image);
@@ -90,21 +98,12 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
         label_esterilizado = view.findViewById(R.id.label_castrado);
         label_peso = view.findViewById(R.id.label_peso);
         mascotaOptions = view.findViewById(R.id.mascotaOptions);
-
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            petName = bundle.getString("nombre", ""); // Key, default value
-            loadPetInfo(view, petName);
-        }
-        petListener();
-        petImgSetOnClickListener();
-        mascotaOptions.setOnClickListener(this);
-
-
-
-
-        return view;
+        label_vacunas = view.findViewById(R.id.label_vacunas);
+        label_desparasitacion = view.findViewById(R.id.label_desparasitacion);
+        label_medidas = view.findViewById(R.id.label_medidas);
+        label_medicacion = view.findViewById(R.id.label_medicacion);
     }
+
 
     private void petImgSetOnClickListener() {
         pet_image.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +152,7 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
 
     private void loadPetInfo(final View view, final String name) {
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference petsRef = db.collection("users")
                 .document(user.getEmail())
                 .collection("pets");
@@ -167,6 +166,7 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 perrete = new Perrete(document.getData());
+                                Log.d(TAG, "Vacuna: " + perrete.getVacuna());
                                 if (perrete.getUrlImg() != null) {
                                     Glide.with(view)
                                             .asBitmap()
@@ -176,13 +176,26 @@ public class MiMascotaFragment extends Fragment implements View.OnClickListener,
                                 label_name_pet.setText(perrete.getNombre());
                                 label_chip.setText("Chip: " + perrete.getnChip());
                                 label_fNac.setText("F. Nac: " + perrete.getFnac());
-                                label_genero.setText("Género: " + perrete.getGenero());
-                                label_peso.setText("Peso: " + perrete.getPeso());
+                                label_peso.setText("Peso: " + perrete.getPeso() + " Kg");
                                 label_raza.setText("Raza: " + perrete.getRaza());
+                                if (perrete.getGenero() == Gender.MACHO.getValue())
+                                    label_genero.setText("Género: Macho");
+                                else if (perrete.getGenero() == Gender.HEMBRA.getValue())
+                                    label_genero.setText("Género: Hembra");
                                 if (perrete.isEsterilizado())
                                     label_esterilizado.setText("Esterilizado: Si");
                                 else
                                     label_esterilizado.setText("Esterilizado: No");
+
+                                if (perrete.getVacuna() != null)
+                                    label_vacunas.setText("Últ. Vacuna: " + perrete.getVacuna());
+                                if(perrete.getDesparasitacion() != null)
+                                    label_desparasitacion.setText("Últ. Desparasitación: " + perrete.getDesparasitacion());
+                                if(perrete.getMedicacion() != null)
+                                    label_medicacion.setText("Medicación: " + perrete.getMedicacion());
+                                if(perrete.getMedidas() != null)
+                                    label_medidas.setText("Medidas: " + perrete.getMedidas());
+
                             }
                         } else {
                             Toast.makeText(getContext(), "No se han cargados los datos desde BD", Toast.LENGTH_SHORT).show();

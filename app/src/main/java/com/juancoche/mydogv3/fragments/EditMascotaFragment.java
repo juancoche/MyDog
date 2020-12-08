@@ -36,6 +36,8 @@ import com.juancoche.mydogv3.Model.Gender;
 import com.juancoche.mydogv3.Model.Perrete;
 import com.juancoche.mydogv3.R;
 
+import org.jetbrains.annotations.NotNull;
+
 import static android.content.ContentValues.TAG;
 
 public class EditMascotaFragment extends Fragment implements View.OnClickListener {
@@ -50,7 +52,7 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
     private RadioButton radioMale, radioFemale;
     private Switch switchEsterilizado;
     public static int REQUEST_CODE;
-    private String selectedDate;
+    private String selectedDate, imgUrl;
     private Button aceptar, cancelar;
 
     @Override
@@ -131,16 +133,14 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
         else if(radioMale.isChecked())
             perrete.setGenero(Gender.MACHO.getValue());
         perrete.setRaza(editTextRaza.getText().toString());
-        if (switchEsterilizado.isChecked())
-            perrete.setEsterilizado(true);
-        else
-            perrete.setEsterilizado(false);
+        perrete.setEsterilizado(switchEsterilizado.isChecked());
         perrete.setPeso(editTextPeso.getText().toString());
         perrete.setnChip(editTextChip.getText().toString());
         perrete.setMedidas(editTextMedidas.getText().toString());
         perrete.setVacuna(editTextVacuna.getText().toString());
         perrete.setDesparasitacion(editTextDesparasitacion.getText().toString());
         perrete.setMedicacion(editTextMedicacion.getText().toString());
+        perrete.setUrlImg(imgUrl);
 
         db.collection("users").document(user.getEmail())
                 .collection("pets")
@@ -194,7 +194,7 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
                                 perrete = new Perrete(document.getData());
-
+                                imgUrl = perrete.getUrlImg();
                                 editTextNombre.setText(perrete.getNombre());
                                 editTextFnac.setText(perrete.getFnac());
                                 editTextRaza.setText(perrete.getRaza());
@@ -205,9 +205,9 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
                                 editTextDesparasitacion.setText(perrete.getDesparasitacion());
                                 editTextMedicacion.setText(perrete.getMedicacion());
 //                                Log.d(TAG, "Current data: " + Gender.MACHO);
-                                if (perrete.getGenero() == Gender.MACHO.getValue())
+                                if (perrete.getGenero().equals(Gender.MACHO.getValue()))
                                     radioMale.setChecked(true);
-                                else if (perrete.getGenero() == Gender.HEMBRA.getValue())
+                                else if (perrete.getGenero().equals(Gender.HEMBRA.getValue()))
                                     radioFemale.setChecked(true);
                                 if (perrete.isEsterilizado())
                                     switchEsterilizado.setChecked(true);
@@ -254,7 +254,7 @@ public class EditMascotaFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NotNull Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
         } else {
